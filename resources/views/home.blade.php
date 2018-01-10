@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@section('logi')
+    <ul class="dropdown-menu" role="menu">
+        <li>
+            <a href="{{ url('/users/logout') }}"
+                onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+
+            <form id="logout-form" action="{{ url('/users/logout') }}" method="get" style="display: none;">
+                {{ csrf_field() }}
+            </form>
+        </li>
+    </ul>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -14,7 +30,8 @@
                         </div>
                     @endif
 
-                    You are logged in as <strong>User</strong>!
+                        @component('components.who')
+                        @endcomponent
                 </div>
             </div>
         </div>
